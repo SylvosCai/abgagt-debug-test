@@ -7,8 +7,7 @@ ENDCLASS.
 
 CLASS ltcl_compute IMPLEMENTATION.
   METHOD test_add.
-    DATA lo_cut TYPE REF TO zcl_cais_dbg_trigger.
-    CREATE OBJECT lo_cut.
-    cl_abap_unit_assert=>assert_not_initial( lo_cut ).  " line 12 — testclasses BP
+    DATA(lv_sum) = 3 + 4.
+    cl_abap_unit_assert=>assert_equals( act = lv_sum exp = 7 ).  " line 11
   ENDMETHOD.
 ENDCLASS.

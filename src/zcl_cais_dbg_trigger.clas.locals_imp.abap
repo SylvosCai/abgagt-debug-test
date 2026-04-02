@@ -1,5 +1,5 @@
 CLASS lcl_helper IMPLEMENTATION.
   METHOD describe.
-    rv_text = |debug-test helper|.  " line 3 — locals_imp BP
+    rv_text = |debug-test|.  " line 3
   ENDMETHOD.
 ENDCLASS.
