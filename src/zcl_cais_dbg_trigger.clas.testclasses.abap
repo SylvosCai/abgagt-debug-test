@@ -7,7 +7,8 @@ ENDCLASS.
 
 CLASS ltcl_compute IMPLEMENTATION.
   METHOD test_add.
-    DATA(lv_sum) = 3 + 4.
-    cl_abap_unit_assert=>assert_equals( act = lv_sum exp = 7 ).  " line 11
+    cl_abap_unit_assert=>assert_equals(    " line 10
+      act = 3 + 4                          " line 11
+      exp = 7 ).                           " line 12
   ENDMETHOD.
 ENDCLASS.
