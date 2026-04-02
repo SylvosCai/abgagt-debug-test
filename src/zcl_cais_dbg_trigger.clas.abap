@@ -27,6 +27,10 @@ CLASS zcl_cais_dbg_trigger IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD compute.
-    rv_result = iv_a + iv_b.        " line 30 — stable CLAS breakpoint
+    " compute: add two integers — unexecutable lines before first statement
+    DATA lv_sum TYPE i.
+
+    lv_sum = iv_a + iv_b.
+    rv_result = lv_sum.
   ENDMETHOD.
 ENDCLASS.

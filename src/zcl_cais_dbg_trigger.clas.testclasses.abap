@@ -7,7 +7,10 @@ ENDCLASS.
 
 CLASS ltcl_helper IMPLEMENTATION.
   METHOD double.
-    rv_val = iv_val * 2.  " line 10 — valid testclasses BP (non-FOR-TESTING method)
+    " double: multiply by 2 — unexecutable lines before first statement
+    DATA lv_two TYPE i VALUE 2.
+
+    rv_val = iv_val * lv_two.
   ENDMETHOD.
 ENDCLASS.
 

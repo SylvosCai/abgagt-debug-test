@@ -7,7 +7,10 @@ FUNCTION zcais_dbg_add.
 *"  EXPORTING
 *"     VALUE(EV_RESULT) TYPE  I
 *"----------------------------------------------------------------------
+  " zcais_dbg_add: unexecutable lines before first statement
+  DATA lv_result TYPE i.
 
-  ev_result = iv_a + iv_b.
+  lv_result = iv_a + iv_b.
+  ev_result = lv_result.
 
 ENDFUNCTION.
