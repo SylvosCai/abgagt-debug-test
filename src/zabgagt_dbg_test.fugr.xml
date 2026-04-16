@@ -4,12 +4,12 @@
   <asx:values>
    <AREAT>Debug integration test function group</AREAT>
    <INCLUDES>
-    <SOBJ_NAME>LZCAIS_DBG_TESTTOP</SOBJ_NAME>
-    <SOBJ_NAME>SAPLZCAIS_DBG_TEST</SOBJ_NAME>
+    <SOBJ_NAME>LZABGAGT_DBG_TESTTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZABGAGT_DBG_TEST</SOBJ_NAME>
    </INCLUDES>
    <FUNCTIONS>
     <item>
-     <FUNCNAME>ZCAIS_DBG_ADD</FUNCNAME>
+     <FUNCNAME>ZABGAGT_DBG_ADD</FUNCNAME>
      <SHORT_TEXT>Add two integers and return result (debug test)</SHORT_TEXT>
      <IMPORT>
       <RSIMP>

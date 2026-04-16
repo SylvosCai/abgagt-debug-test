@@ -1,4 +1,4 @@
-FUNCTION zcais_dbg_add.
+FUNCTION zabgagt_dbg_add.
 *"----------------------------------------------------------------------
 *"*"Local Interface:
 *"  IMPORTING
@@ -7,7 +7,7 @@ FUNCTION zcais_dbg_add.
 *"  EXPORTING
 *"     VALUE(EV_RESULT) TYPE  I
 *"----------------------------------------------------------------------
-  " zcais_dbg_add: unexecutable lines before first statement
+  " zabgagt_dbg_add: unexecutable lines before first statement
   DATA lv_result TYPE i.
 
   lv_result = iv_a + iv_b.

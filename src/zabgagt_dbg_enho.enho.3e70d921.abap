@@ -1,0 +1,5 @@
+"Name: \TY:ZCL_ABGAGT_DBG_TRIGGER\ME:COMPUTE\SE:BEGIN\EI
+ENHANCEMENT 0 ZABGAGT_DBG_ENHO.
+  DATA lv_enho_marker TYPE i.
+  lv_enho_marker = iv_a * iv_b.
+ENDENHANCEMENT.

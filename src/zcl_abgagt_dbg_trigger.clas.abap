@@ -1,4 +1,4 @@
-CLASS zcl_cais_dbg_trigger DEFINITION
+CLASS zcl_abgagt_dbg_trigger DEFINITION
   PUBLIC FINAL CREATE PUBLIC.
 
   PUBLIC SECTION.
@@ -11,11 +11,11 @@ CLASS zcl_cais_dbg_trigger DEFINITION
       RETURNING VALUE(rv_result) TYPE i.
 ENDCLASS.
 
-CLASS zcl_cais_dbg_trigger IMPLEMENTATION.
+CLASS zcl_abgagt_dbg_trigger IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
     DATA lv_result TYPE i.
 
-    CALL FUNCTION 'ZCAIS_DBG_ADD'
+    CALL FUNCTION 'ZABGAGT_DBG_ADD'
       EXPORTING
         iv_a      = 3
         iv_b      = 4
