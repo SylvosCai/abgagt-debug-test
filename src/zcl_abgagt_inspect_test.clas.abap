@@ -8,18 +8,17 @@ CLASS zcl_abgagt_inspect_test IMPLEMENTATION.
     " This class intentionally triggers Code Inspector findings for
     " integration testing of the inspect command (error/warning/suppress).
     "
-    " Trigger: SELECT * from a table with many columns, but use only
-    " one field. The CI check "Search for SELECT * FROM dbtab" flags
-    " this as FEW when < 20% of fields are used.
+    " Trigger: SORT inside a LOOP — CI check "SORT Statement Inside a Loop"
+    " flags this as a performance issue. Suppressible with #EC CI_SORTLOOP.
 
-    DATA lt_tadir TYPE STANDARD TABLE OF tadir.
+    DATA lt_data TYPE STANDARD TABLE OF tadir.
 
-    " SELECT * from TADIR (~15 columns) but only use OBJ_NAME (1 field = ~7%)
-    SELECT * FROM tadir INTO TABLE lt_tadir UP TO 1 ROWS
-      WHERE pgmid = 'R3TR' AND object = 'CLAS' AND obj_name = 'ZCL_ABGAGT_INSPECT_TEST'.
+    SELECT * FROM tadir INTO TABLE lt_data UP TO 5 ROWS
+      WHERE pgmid = 'R3TR' AND object = 'CLAS'.
 
-    " Only access one field — triggers FEW finding
-    LOOP AT lt_tadir ASSIGNING FIELD-SYMBOL(<ls>).
+    LOOP AT lt_data ASSIGNING FIELD-SYMBOL(<ls>).
+      " SORT inside LOOP → triggers CI finding
+      SORT lt_data BY obj_name.
       out->write( <ls>-obj_name ).
     ENDLOOP.
   ENDMETHOD.
