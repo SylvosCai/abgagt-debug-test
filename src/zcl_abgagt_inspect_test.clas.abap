@@ -8,18 +8,24 @@ CLASS zcl_abgagt_inspect_test IMPLEMENTATION.
     " This class intentionally triggers Code Inspector findings for
     " integration testing of the inspect command (error/warning/suppress).
     "
-    " Trigger: SORT inside a LOOP — CI check "SORT Statement Inside a Loop"
+    " Trigger: SORT inside a DO loop — CI check "SORT Statement Inside a Loop"
     " flags this as a performance issue. Suppressible with #EC CI_SORTLOOP.
 
     DATA lt_data TYPE STANDARD TABLE OF tadir.
+    DATA lt_other TYPE STANDARD TABLE OF tadir.
 
     SELECT * FROM tadir INTO TABLE lt_data UP TO 5 ROWS
       WHERE pgmid = 'R3TR' AND object = 'CLAS'.
 
-    LOOP AT lt_data ASSIGNING FIELD-SYMBOL(<ls>).
-      " SORT inside LOOP → triggers CI finding
-      SORT lt_data BY obj_name.
-      out->write( <ls>-obj_name ).
-    ENDLOOP.
+    lt_other = lt_data.
+
+    DO 3 TIMES.
+      " SORT inside DO loop → triggers CI_SORTLOOP finding
+      SORT lt_other BY obj_name.
+      READ TABLE lt_other INDEX 1 ASSIGNING FIELD-SYMBOL(<ls>).
+      IF sy-subrc = 0.
+        out->write( <ls>-obj_name ).
+      ENDIF.
+    ENDDO.
   ENDMETHOD.
 ENDCLASS.
