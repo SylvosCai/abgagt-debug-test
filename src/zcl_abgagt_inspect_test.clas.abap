@@ -9,14 +9,15 @@ CLASS zcl_abgagt_inspect_test IMPLEMENTATION.
     " Code Inspector findings, used for integration testing of the
     " abapgit-agent inspect command (error/warning/suppress tests).
 
-    " Pattern 1: CALL FUNCTION with non-existent FM → inspect warning
-    DATA lv_result TYPE string.
-    CALL FUNCTION 'ZNONEXISTENT_FM_FOR_INSPECT'
-      IMPORTING
-        ev_result = lv_result
-      EXCEPTIONS
-        OTHERS    = 1.
+    " Pattern: SELECT * and implicit INTO WORK AREA — commonly flagged
+    DATA lt_tadir TYPE STANDARD TABLE OF tadir.
+    SELECT * FROM tadir INTO TABLE lt_tadir UP TO 1 ROWS
+      WHERE pgmid = 'R3TR' AND object = 'CLAS' AND obj_name = 'ZCL_ABGAGT_INSPECT_TEST'.
 
-    out->write( lv_result ).
+    " Pattern: DESCRIBE TABLE with obsolete syntax
+    DATA lv_lines TYPE i.
+    DESCRIBE TABLE lt_tadir LINES lv_lines.
+
+    out->write( |Found { lv_lines } entries| ).
   ENDMETHOD.
 ENDCLASS.
