@@ -9,12 +9,14 @@ CLASS zcl_abgagt_inspect_test IMPLEMENTATION.
     " Code Inspector findings, used for integration testing of the
     " abapgit-agent inspect command (error/warning/suppress tests).
 
-    " Pattern 1: unused variable → CI warning
-    DATA lv_unused_var TYPE string.
+    " Pattern 1: CALL FUNCTION with non-existent FM → inspect warning
+    DATA lv_result TYPE string.
+    CALL FUNCTION 'ZNONEXISTENT_FM_FOR_INSPECT'
+      IMPORTING
+        ev_result = lv_result
+      EXCEPTIONS
+        OTHERS    = 1.
 
-    " Pattern 2: unreachable code after RETURN → CI warning
-    out->write( 'inspect test' ).
-    RETURN.
-    out->write( 'unreachable' ).  "#EC NEEDED
+    out->write( lv_result ).
   ENDMETHOD.
 ENDCLASS.
